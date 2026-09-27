@@ -66,8 +66,8 @@ void Error_Handler(void);
 #define USART_RX_GPIO_Port GPIOA
 #define TRANSMISSON_STATUS_Pin GPIO_PIN_5
 #define TRANSMISSON_STATUS_GPIO_Port GPIOA
-#define NSS_MASTER_Pin GPIO_PIN_8
-#define NSS_MASTER_GPIO_Port GPIOA
+#define NSS_SPI3_Pin GPIO_PIN_8
+#define NSS_SPI3_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
