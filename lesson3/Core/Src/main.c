@@ -100,22 +100,25 @@ int main(void) {
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	while (1) {
-
-		if (transmitted_data == received_data) {
-			HAL_GPIO_WritePin(TRANSMISSON_STATUS_GPIO_Port,
-			TRANSMISSON_STATUS_Pin, GPIO_PIN_SET);
-			HAL_Delay(1000);
+		// Some data was transmitted
+		if (received_data != 0) {
+			// Right data, turn on led, wait 1 sec
+			if (transmitted_data == received_data) {
+				HAL_GPIO_WritePin(TRANSMISSON_STATUS_GPIO_Port,
+				TRANSMISSON_STATUS_Pin, GPIO_PIN_SET);
+				HAL_Delay(1000);
+			}
+			// Reset data anyway
 			received_data = 0;
+			// Turn off led
 			HAL_GPIO_WritePin(TRANSMISSON_STATUS_GPIO_Port,
-			TRANSMISSON_STATUS_Pin, GPIO_PIN_RESET);
+						TRANSMISSON_STATUS_Pin, GPIO_PIN_RESET);
+			// restart SPI3 receiving
 			HAL_SPI_Receive_IT(&hspi3, &received_data,
 					sizeof(transmitted_data));
-		} else if (received_data != 0) {
-			received_data = 0;
+		} else {
 			HAL_GPIO_WritePin(TRANSMISSON_STATUS_GPIO_Port,
 			TRANSMISSON_STATUS_Pin, GPIO_PIN_RESET);
-			HAL_SPI_Receive_IT(&hspi3, &received_data,
-					sizeof(transmitted_data));
 		}
 
 		if (start_transmission == 1) {
