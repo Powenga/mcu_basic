@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "uart_handler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,9 +43,7 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-uint8_t rx_byte = 0;
-uint8_t msg_ready = 0;
-uint8_t cmd_to_process = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,34 +90,15 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart2, &rx_byte, 1);
+  UART_Handler_Init(&huart2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (msg_ready)
-	     {
-	         msg_ready = 0; // Сбрасываем флаг обработки
 
-	         // Обрабатываем команду
-	         if (cmd_to_process == 'A') {
-	             HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-	         }
-	         else if (cmd_to_process == 'a') {
-	             HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-	         }
-	         else {
-	             // Мягкое мигание без жестких HAL_Delay на секунды
-	             for (uint8_t var = 0; var < 6; ++var) {
-	                 HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-	                 HAL_Delay(100); // 100мс внутри обработки короткой команды — допустимо
-	             }
-	             HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-	         }
-	     }
-
+	  UART_Handler_Process();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -251,17 +230,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-    if (huart->Instance == USART2)
-    {
-        cmd_to_process = rx_byte; // Сохраняем байт для главного цикла
-        msg_ready = 1;            // Выставляем флаг готовности данных
 
-        // КРИТИЧЕСКИ ВАЖНО: Перезапускаем прерывание для следующего байта!
-        HAL_UART_Receive_IT(&huart2, &rx_byte, 1);
-    }
-}
 /* USER CODE END 4 */
 
 /**
