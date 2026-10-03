@@ -13,6 +13,10 @@ Release/
 # Eclipse project files generated locally
 *.launch
 
+# vscode settings
+
+.vscode/
+
 # =========================
 # Compiled files
 # =========================
@@ -42,3 +46,10 @@ Thumbs.db
 # =========================
 
 *.log
+
+# =========================
+# Others
+# =========================
+
+.clinerules
+.clineignore
