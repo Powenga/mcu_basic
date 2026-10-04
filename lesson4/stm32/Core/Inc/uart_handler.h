@@ -10,8 +10,9 @@
 
 #include "main.h"
 
-void UART_Handler_Init(UART_HandleTypeDef *huart);
+void UART_ReceiveHandler_Init(UART_HandleTypeDef *huart);
 
-void UART_Handler_Process(void);
+void UART_ReceiveHandler_Process(void);
+void UART_Transmit_Process(UART_HandleTypeDef *huart);
 
 #endif /* INC_UART_HANDLER_H_ */
