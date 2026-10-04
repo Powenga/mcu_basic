@@ -95,7 +95,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-  UART_ReceiveHandler_Init(&huart4);
+  UART_Receive_Handler_Init(&huart4, &huart2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,8 +103,8 @@ int main(void)
   while (1)
   {
 
-	  UART_ReceiveHandler_Process();
-    UART_Transmit_Process(&huart2);
+	  UART_Receive_Handler_Process();
+    UART_Transmit_Process();
 
     /* USER CODE END WHILE */
 
