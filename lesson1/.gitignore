@@ -1,0 +1,41 @@
+# ==========================================
+# STM32CubeIDE / Eclipse Output & Build
+# ==========================================
+Debug/
+Release/
+.metadata/
+
+# ==========================================
+# Local workspace settings & user launch configs
+# ==========================================
+.settings/
+*.launch
+
+# ==========================================
+# STM32CubeMX temporary files & logs
+# ==========================================
+.mxproject
+mx.scratch
+*.log
+
+# ==========================================
+# Compiled binaries & GCC outputs
+# ==========================================
+*.elf
+*.bin
+*.hex
+*.map
+*.o
+*.d
+*.su
+*.list
+
+# ==========================================
+# Temporary & OS files
+# ==========================================
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db

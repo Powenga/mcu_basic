@@ -1,55 +1,13 @@
 # =========================
-# STM32CubeIDE
-# =========================
-
-# Build output
-Debug/
-Release/
-
-# Eclipse / CubeIDE workspace settings
-.settings/
-.metadata/
-
-# Eclipse project files generated locally
-*.launch
-
-# vscode settings
-
-.vscode/
-
-# =========================
-# Compiled files
-# =========================
-
-*.o
-*.d
-*.elf
-*.map
-*.hex
-*.bin
-*.list
-*.su
-
-# =========================
-# Temporary files
-# =========================
-
-*.tmp
-*.bak
-*.swp
-*~
-.DS_Store
-Thumbs.db
-
-# =========================
 # STM32CubeIDE generated
 # =========================
-
+.metadata/
 *.log
 
 # =========================
 # Others
 # =========================
 
+.vscode
 .clinerules
 .clineignore

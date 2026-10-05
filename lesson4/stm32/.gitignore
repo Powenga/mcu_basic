@@ -1,3 +1,48 @@
-build
-mx.scratch
-!.settings
+# ==========================================
+# VS Code Settings & Plugin Stores
+# ==========================================
+# Игнорируем персональные настройки с абсолютными путями ПК
+settings.json
+*.store.json
+
+# Игнорируем временное состояние плагинов и кэш
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/c_cpp_properties.json
+!.vscode/extensions.json
+
+# ==========================================
+# CMake & Build Artifacts
+# ==========================================
+build/
+Build/
+bin/
+obj/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+
+# ==========================================
+# Output Executables & Objects
+# ==========================================
+*.elf
+*.bin
+*.hex
+*.map
+*.o
+*.d
+*.su
+*.dwo
+
+# ==========================================
+# Temporary & OS files
+# ==========================================
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
